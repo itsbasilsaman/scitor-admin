@@ -1,0 +1,91 @@
+import axios  from "axios";
+import { URL,config } from "../../../config/constants";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+// import { MyObject } from "../../../interfaces/admin/addDoument";
+
+
+export const axiosIn = axios.create({
+    baseURL: URL,
+  });
+
+ type HotelCategory = "Normal" | "Premium" | "Luxury";
+
+interface Activity {
+  day: number;
+  destination: string;
+  description: string;
+  time: string;
+  imageUrl: string;
+}
+
+interface Hotel {
+  name: string;
+  location: string;
+  category: HotelCategory;
+}
+
+interface FormData {
+  packageId: string;
+  dayNumber: number;
+  activities: Activity[];
+  hotels: Hotel[];
+  priceIncludes: string[];
+  priceExcludes: string[];
+}
+
+  export const AdminAddDayWisePackageAction= createAsyncThunk(
+    "admin/addDayDetailedPackage",
+    async (Datas:FormData,{rejectWithValue})=>{
+        try {
+            console.log("the Log before go to the Data Wise package adding ",Datas);
+            const response = await axiosIn.post(`/admin/addDayDetailedPackage`, Datas,config);
+     
+            
+            return response.data;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } catch (error: any) {
+            if (error.response) {
+              return rejectWithValue(error.response.data);
+            }
+            return rejectWithValue({ message: "Something went wrong!" });
+          }
+    }
+  )
+
+
+    export const admingGetDetailedPackages= createAsyncThunk(
+      "admin/getDetailedPackage",
+      async (_,{rejectWithValue})=>{
+          try {
+            console.log("before going detailed");
+            
+              const response = await axiosIn.get(`/admin/getDetailedPackage`,config);
+              return response.data;
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } catch (error: any) {
+              if (error.response) {
+                return rejectWithValue(error.response.data);
+              }
+              return rejectWithValue({ message: "Something went wrong!" });
+            }
+      }
+    )
+
+
+      export const deleteDayWisePackageAction= createAsyncThunk(
+        "admin/deleteDetailedPackage",
+        async (id:string,{rejectWithValue})=>{
+            try {
+                console.log("before delete the package ff",id);
+                const response = await axiosIn.delete(`/admin/deleteDetailedPackage/${id}`,config);
+                return response.data;
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              } catch (error: any) {
+                if (error.response) {
+                  return rejectWithValue(error.response.data);
+                }
+                return rejectWithValue({ message: "Something went wrong!" });
+              }
+        }
+      )
+    

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 
 type LessonContent = {
-  videoUrl: string;
+  videoUrl: string; 
   videoDuration: string;
   resources: File[];
   preview: boolean;
@@ -222,7 +222,7 @@ export default function AddCourse() {
         enterTo="opacity-100"
         leave="transition-opacity duration-300"
         leaveFrom="opacity-100"
-        leaveTo="opacity-0"
+        leaveTo="opacity-0" 
       >
         <div className="animate-fade-in">
           <h3 className="text-2xl font-bold mb-4 text-blue-700">Course Details for Each Lesson</h3>

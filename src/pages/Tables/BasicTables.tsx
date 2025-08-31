@@ -16,6 +16,6 @@ export default function BasicTables() {
           <BasicTableOne />
         </ComponentCard>
       </div>
-    </>
+    </> 
   );
 }

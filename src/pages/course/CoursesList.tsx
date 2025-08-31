@@ -145,7 +145,7 @@ const courses: {
         },
       },
     ],
-  },
+  }, 
 ];
 
 export default function CoursesList() {
