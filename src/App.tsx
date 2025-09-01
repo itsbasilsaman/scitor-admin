@@ -19,22 +19,23 @@ export const App: React.FC = React.memo(() => {
     <Router>
       <ScrollToTop />
       <Routes>
-                  <Route element={<AppLayout />}></Route>
+          <Route element={<AppLayout />}>
         <Route
           path="/"
           element={
-            isLogged && role === "admin" ? <Navigate to="/adminHomepage" /> : <SignIn />
+            isLogged  ? <Navigate to="/" /> : <SignIn />
           }
         />
         <Route
           path="/add-course"
-          element={isLogged && role === "admin" ? <AddCourse /> : <SignIn />}
+          element={isLogged  ? <AddCourse /> : <SignIn />}
         />
         <Route
           path="/courses"
-          element={isLogged && role === "admin" ? <CoursesList /> : <SignIn />}
+          element={isLogged  ? <CoursesList /> : <SignIn />}
         />
         <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </Router>
   );

@@ -29,27 +29,28 @@ const navItems: NavItem[] = [
     name: "Dashboard",
     path: "/",
   },
-  //  {
-  //   name: "User's list",
-  //   icon: <TableIcon />,
-  //   path: "/basic-tables",
-  // },
+  {
+    icon: <GridIcon />,
+    name: "Add Courses",
+    path: "/add-course",
+  },
+   {
+    name: "User's list",
+    icon: <TableIcon />,
+    path: "/basic-tables",
+  },
    {
     name: "Courses's list",
     icon: <TableIcon />,
     path: "/courses",
   },
- 
-  // {
-  //   icon: <UserCircleIcon />,
-  //   name: "User Profile",
-  //   path: "/profile",
-  // },
-  // {
-  //   name: "Add Course",
-  //   icon: <ListIcon />,
-  //   path: "/form-elements"
-  // },
+  
+
+  {
+    name: "Add Detailed Course",
+    icon: <GridIcon />,
+    path: "/form-elements"
+  },
  
  
 ];

@@ -1,6 +1,6 @@
 
 import axios  from "axios";
-import { URL, createAxiosConfig ,config} from "../../../config/constants";
+import { URL ,config} from "../../../config/constants";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { IAdminLogin } from "../../../interfaces/admin/login";
@@ -18,9 +18,9 @@ export const axiosIn = axios.create({
     async (adminCredentials:IAdminLogin,{rejectWithValue})=>{
         try {
            
-            const config1= createAxiosConfig(false) 
-            const {data} = await axiosIn.post(`/admin/login`, adminCredentials,config1);
-
+          
+          console.log("befor go to the logtin ",adminCredentials, "admin login response data");
+            const {data} = await axiosIn.post(`/admin/login`, adminCredentials,config);
             console.log(data, "admin login response data");
             return data;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
