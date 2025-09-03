@@ -7,10 +7,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 export const axiosIn = axios.create({
     baseURL: URL,
   });
-
-
-
-
+ 
   export const adminAddUserAction= createAsyncThunk(
     "admin/addUser",
     async (Datas:FormData,{rejectWithValue})=>{

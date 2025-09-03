@@ -13,6 +13,7 @@ import CoursesList from "./pages/course/CoursesList";
 import SignIn from "./pages/AuthPages/SignIn";
 
 import NotFound from "./pages/OtherPage/NotFound";
+import UserList from "./pages/Users/userList";
 
 export const App: React.FC = React.memo(() => {
   const { isLogged, role } = useSelector((state: RootState) => state.auth);
@@ -42,6 +43,12 @@ export const App: React.FC = React.memo(() => {
           path="/courses"
           element={isLogged  ? <CoursesList /> : <SignIn />}
         />
+
+            <Route
+          path="/users-list"
+          element={isLogged  ? <UserList/>  : <SignIn />}
+        />
+
         <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

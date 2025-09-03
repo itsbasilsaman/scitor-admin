@@ -1,8 +1,9 @@
-// import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from "react";
 // import { Link } from "react-router-dom";
-
-// Dummy data for demonstration. Replace with real data source.
+ 
 type Resource = string | { name: string };
+
 
 const courses: {
   title: string;
@@ -149,6 +150,8 @@ const courses: {
 ];
 
 export default function CoursesList() {
+   
+  
   return (
     <div className="max-w-5xl mx-auto p-2 sm:p-4 md:p-8 bg-white rounded-2xl shadow-lg">
       <h2 className="text-2xl sm:text-3xl font-extrabold mb-4 sm:mb-6 text-center text-blue-700 tracking-tight">Courses</h2>
