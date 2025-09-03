@@ -40,7 +40,7 @@ const initialCourse: Course = {
 const initialLesson: Lesson = {
   title: "",
   id: "",
-  date: "",
+  date: "", 
   instructor: "",
   thumbnail: null,
   duration: "",

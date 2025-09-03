@@ -4,7 +4,10 @@ import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import { useSelector } from "react-redux";
 import { RootState } from "./reduxKit/store";
+import { Toaster } from 'react-hot-toast';
 
+
+import AddUserForm from '../src/pages/Users/addUser';
 import AddCourse from "./pages/course/AddCourse";
 import CoursesList from "./pages/course/CoursesList";
 import SignIn from "./pages/AuthPages/SignIn";
@@ -18,6 +21,7 @@ export const App: React.FC = React.memo(() => {
   return (
     <Router>
       <ScrollToTop />
+      <Toaster position="top-right" reverseOrder={false} />
       <Routes>
           <Route element={<AppLayout />}>
         <Route
@@ -31,6 +35,10 @@ export const App: React.FC = React.memo(() => {
           element={isLogged  ? <AddCourse /> : <SignIn />}
         />
         <Route
+          path="/add-user"
+          element={isLogged  ? <AddUserForm /> : <SignIn />}
+        />
+        <Route
           path="/courses"
           element={isLogged  ? <CoursesList /> : <SignIn />}
         />
@@ -41,4 +49,4 @@ export const App: React.FC = React.memo(() => {
   );
 });
 
-export default App; // ✅ important
+export default App; 

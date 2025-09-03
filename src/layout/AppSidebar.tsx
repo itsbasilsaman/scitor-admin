@@ -51,6 +51,17 @@ const navItems: NavItem[] = [
     icon: <GridIcon />,
     path: "/form-elements"
   },
+  {
+    name: "Add User",
+    icon: <GridIcon />,
+    path: "/add-user"
+  },
+ 
+  {
+    name: "UserList",
+    icon: <GridIcon />,
+    path: "/user-list"
+  },
  
  
 ];

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useRef, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -11,8 +12,8 @@ import PageMeta from "../components/common/PageMeta";
 interface CalendarEvent extends EventInput {
   extendedProps: {
     calendar: string;
-  };
-}
+  }; 
+} 
 
 const Calendar: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
@@ -280,5 +281,5 @@ const renderEventContent = (eventInfo: any) => {
     </div>
   );
 };
-
+ 
 export default Calendar;
