@@ -21,7 +21,7 @@ export const App: React.FC = React.memo(() => {
   return (
     <Router>
       <ScrollToTop />
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-right"  />
       <Routes>
           <Route element={<AppLayout />}>
         <Route
