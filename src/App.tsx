@@ -11,6 +11,7 @@ import AddUserForm from '../src/pages/Users/addUser';
 import AddCourse from "./pages/course/AddCourse";
 import CoursesList from "./pages/course/CoursesList";
 import SignIn from "./pages/AuthPages/SignIn";
+import AddLesson from "./pages/course/AddLessonCourse";
 
 import NotFound from "./pages/OtherPage/NotFound";
 import UserList from "./pages/Users/userList";
@@ -34,6 +35,10 @@ export const App: React.FC = React.memo(() => {
         <Route
           path="/add-course"
           element={isLogged  ? <AddCourse /> : <SignIn />}
+        />
+        <Route
+          path="/add-lesson"
+          element={isLogged  ? <AddLesson /> : <SignIn />}
         />
         <Route
           path="/add-user"

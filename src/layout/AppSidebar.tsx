@@ -47,9 +47,9 @@ const navItems: NavItem[] = [
   
 
   {
-    name: "Add Detailed Course",
+    name: "Add Lesson",
     icon: <GridIcon />,
-    path: "/form-elements"
+    path: "/add-lesson"
   },
   {
     name: "Add User",

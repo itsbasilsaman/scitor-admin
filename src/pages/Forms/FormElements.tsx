@@ -24,7 +24,7 @@ export default function FormElements() {
           <DefaultInputs />
           <SelectInputs />
           <TextAreaInput />
-          <InputStates />
+          <InputStates /> 
         </div>
         <div className="space-y-6">
           <InputGroup />

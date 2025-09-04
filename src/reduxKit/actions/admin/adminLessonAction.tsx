@@ -10,13 +10,12 @@ export const axiosIn = axios.create({
 
 
 
-
-  export const adminAddCourseAction= createAsyncThunk(
-    "admin/Course",
+  export const adminAddLessonAction= createAsyncThunk(
+    "admin/Lesson",
     async (Datas:FormData,{rejectWithValue})=>{
         try {
-            console.log("this  for Course ",Datas);
-            const response = await axiosIn.post(`/admin/addCourse`, Datas,config);
+            console.log("this  for Lesson ",Datas);
+            const response = await axiosIn.post(`/admin/addLesson`, Datas,config);
             return response.data;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } catch (error: any) {
@@ -29,11 +28,11 @@ export const axiosIn = axios.create({
   )
 
 
-    export const adminGetCourses= createAsyncThunk(
-      "admin/adminGetCourses",
+    export const adminGetLessons= createAsyncThunk(
+      "admin/adminGetLessons",
       async (_,{rejectWithValue})=>{
           try {
-              const response = await axiosIn.get(`/admin/getCourse`,config);
+              const response = await axiosIn.get(`/admin/getLessons`,config);
               return response.data;
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
@@ -45,12 +44,12 @@ export const axiosIn = axios.create({
       }
     )
   
-      export const deleteCourseAction= createAsyncThunk(
+      export const deleteLessonAction= createAsyncThunk(
         "admin/deleteUserAction",
         async (id:string,{rejectWithValue})=>{
             try {
-                console.log("before delete the CourseAction ",id);
-                const response = await axiosIn.delete(`/admin/deleteCourse/${id}`,config);
+                console.log("before delete the LessonAction ",id);
+                const response = await axiosIn.delete(`/admin/deleteLesson/${id}`,config);
                 return response.data;
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
               } catch (error: any) {

@@ -20,7 +20,7 @@ export default function Blank() {
             combinations of grids.Please check out the dashboard and other pages
           </p>
         </div>
-      </div>
+      </div> 
     </div>
   );
 }
