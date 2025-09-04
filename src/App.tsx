@@ -4,10 +4,9 @@ import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import { useSelector } from "react-redux";
 import { RootState } from "./reduxKit/store";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 
-
-import AddUserForm from '../src/pages/Users/addUser';
+import AddUserForm from "./pages/Users/addUser";
 import AddCourse from "./pages/course/AddCourse";
 import CoursesList from "./pages/course/CoursesList";
 import SignIn from "./pages/AuthPages/SignIn";
@@ -23,42 +22,45 @@ export const App: React.FC = React.memo(() => {
   return (
     <Router>
       <ScrollToTop />
-      <Toaster position="top-right"  />
+      <Toaster position="top-right" />
+
       <Routes>
-          <Route element={<AppLayout />}>
-        <Route
-          path="/"
-          element={
-            isLogged  ? <Navigate to="/" /> : <SignIn />
-          }
-        />
-        <Route
-          path="/add-course"
-          element={isLogged  ? <AddCourse /> : <SignIn />}
-        />
-        <Route
-          path="/add-lesson"
-          element={isLogged  ? <AddLesson /> : <SignIn />}
-        />
-        <Route
-          path="/add-user"
-          element={isLogged  ? <AddUserForm /> : <SignIn />}
-        />
-        <Route
-          path="/courses"
-          element={isLogged  ? <CoursesList /> : <SignIn />}
-        />
+        {/* Public Route */}
+        <Route path="/login" element={<SignIn />} />
 
-            <Route
-          path="/users-list"
-          element={isLogged  ? <UserList/>  : <SignIn />}
-        />
-
-        <Route path="*" element={<NotFound />} />
+        {/* Protected Routes inside AppLayout */}
+        <Route element={<AppLayout />}>
+          <Route
+            path="/"
+            element={isLogged ? <CoursesList /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/add-course"
+            element={isLogged ? <AddCourse /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/add-lesson"
+            element={isLogged ? <AddLesson /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/add-user"
+            element={isLogged ? <AddUserForm /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/courses"
+            element={isLogged ? <CoursesList /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/users-list"
+            element={isLogged ? <UserList /> : <Navigate to="/login" />}
+          />
         </Route>
+
+        {/* 404 */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
 });
 
-export default App; 
+export default App;

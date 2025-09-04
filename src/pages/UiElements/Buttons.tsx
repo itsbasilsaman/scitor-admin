@@ -16,10 +16,10 @@ export default function Buttons() {
         {/* Primary Button */}
         <ComponentCard title="Primary Button">
           <div className="flex items-center gap-5">
-            <Button size="sm" variant="primary">
+            <Button size="sm">
               Button Text
             </Button>
-            <Button size="md" variant="primary">
+            <Button size="md">
               Button Text
             </Button>
           </div>
@@ -27,38 +27,34 @@ export default function Buttons() {
         {/* Primary Button with Start Icon */}
         <ComponentCard title="Primary Button with Left Icon">
           <div className="flex items-center gap-5">
-            <Button
-              size="sm"
-              variant="primary"
-              startIcon={<BoxIcon className="size-5" />}
-            >
-              Button Text
+            <Button size="sm">
+              <div className="flex items-center gap-2">
+                <BoxIcon className="size-5" />
+                Button Text
+              </div>
             </Button>
-            <Button
-              size="md"
-              variant="primary"
-              startIcon={<BoxIcon className="size-5" />}
-            >
-              Button Text
+            <Button size="md">
+              <div className="flex items-center gap-2">
+                <BoxIcon className="size-5" />
+                Button Text
+              </div>
             </Button>
           </div>
         </ComponentCard>
         {/* Primary Button with Start Icon */}
         <ComponentCard title="Primary Button with Right Icon">
           <div className="flex items-center gap-5">
-            <Button
-              size="sm"
-              variant="primary"
-              endIcon={<BoxIcon className="size-5" />}
-            >
-              Button Text
+            <Button size="sm">
+              <div className="flex items-center gap-2">
+                Button Text
+                <BoxIcon className="size-5" />
+              </div>
             </Button>
-            <Button
-              size="md"
-              variant="primary"
-              endIcon={<BoxIcon className="size-5" />}
-            >
-              Button Text
+            <Button size="md">
+              <div className="flex items-center gap-2">
+                Button Text
+                <BoxIcon className="size-5" />
+              </div>
             </Button>
           </div>
         </ComponentCard>
@@ -66,10 +62,10 @@ export default function Buttons() {
         <ComponentCard title="Secondary Button">
           <div className="flex items-center gap-5">
             {/* Outline Button */}
-            <Button size="sm" variant="outline">
+            <Button size="sm">
               Button Text
             </Button>
-            <Button size="md" variant="outline">
+            <Button size="md">
               Button Text
             </Button>
           </div>
@@ -77,38 +73,34 @@ export default function Buttons() {
         {/* Outline Button with Start Icon */}
         <ComponentCard title="Outline Button with Left Icon">
           <div className="flex items-center gap-5">
-            <Button
-              size="sm"
-              variant="outline"
-              startIcon={<BoxIcon className="size-5" />}
-            >
-              Button Text
+            <Button size="sm">
+              <div className="flex items-center gap-2">
+                <BoxIcon className="size-5" />
+                Button Text
+              </div>
             </Button>
-            <Button
-              size="md"
-              variant="outline"
-              startIcon={<BoxIcon className="size-5" />}
-            >
-              Button Text
+            <Button size="md">
+              <div className="flex items-center gap-2">
+                <BoxIcon className="size-5" />
+                Button Text
+              </div>
             </Button>
           </div>
-        </ComponentCard>{" "}
+        </ComponentCard>
         {/* Outline Button with Start Icon */}
         <ComponentCard title="Outline Button with Right Icon">
           <div className="flex items-center gap-5">
-            <Button
-              size="sm"
-              variant="outline"
-              endIcon={<BoxIcon className="size-5" />}
-            >
-              Button Text
+            <Button size="sm">
+              <div className="flex items-center gap-2">
+                Button Text
+                <BoxIcon className="size-5" />
+              </div>
             </Button>
-            <Button
-              size="md"
-              variant="outline"
-              endIcon={<BoxIcon className="size-5" />}
-            >
-              Button Text
+            <Button size="md">
+              <div className="flex items-center gap-2">
+                Button Text
+                <BoxIcon className="size-5" />
+              </div>
             </Button>
           </div>
         </ComponentCard>
