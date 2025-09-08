@@ -51,7 +51,7 @@ const navItems: NavItem[] = [
     icon: <GridIcon />,
     path: "/add-lesson"
   },
-  {
+  { 
     name: "Add User",
     icon: <GridIcon />,
     path: "/add-user"

@@ -45,10 +45,10 @@ export const axiosIn = axios.create({
       }
     )
     export const adminGetCourseById= createAsyncThunk(
-      "admin/adminGetCourseById",
+      "admin/getCourseById",
       async (id:string,{rejectWithValue})=>{
           try {
-              const response = await axiosIn.get(`/admin/adminGetCourseById/${id}`,config);
+              const response = await axiosIn.get(`/admin/getCourseById/${id}`,config);
               return response.data;
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
@@ -60,12 +60,12 @@ export const axiosIn = axios.create({
       }
     )
   
-      export const deleteCourseAction= createAsyncThunk(
+      export const deleteLessonAction= createAsyncThunk(
         "admin/deleteUserAction",
         async (id:string,{rejectWithValue})=>{
             try {
                 console.log("before delete the CourseAction ",id);
-                const response = await axiosIn.delete(`/admin/deleteCourse/${id}`,config);
+                const response = await axiosIn.delete(`/admin/deleteLesson/${id}`,config);
                 return response.data;
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
               } catch (error: any) {
