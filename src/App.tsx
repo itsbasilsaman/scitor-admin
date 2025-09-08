@@ -4,7 +4,7 @@ import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import { useSelector } from "react-redux";
 import { RootState } from "./reduxKit/store";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from 'react-hot-toast';
 
 import AddUserForm from "./pages/Users/addUser";
 import AddCourse from "./pages/course/AddCourse";
@@ -22,7 +22,8 @@ export const App: React.FC = React.memo(() => {
   return (
     <Router>
       <ScrollToTop />
-      <Toaster position="top-right" />
+         <Toaster position="top-center" />
+
 
       <Routes>
         {/* Public Route */}

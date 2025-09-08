@@ -125,7 +125,7 @@ export default function AddCourse() {
       if(result.success){
         
         toast.success("Course created successfully!");
-        setCourse(initialCourse);
+        setCourse(initialCourse); 
         setErrors({});
       }
       

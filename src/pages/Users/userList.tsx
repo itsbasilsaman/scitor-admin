@@ -7,7 +7,7 @@ import Button from "../../components/ui/button/Button";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 
 interface User {
-  _id: string;
+  _id: string; 
   name: string;
   phoneNumber: string;
   uniqueId: string;

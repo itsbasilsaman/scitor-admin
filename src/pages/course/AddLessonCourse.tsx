@@ -34,7 +34,7 @@ const AddLesson: React.FC = () => {
     lessonNumber: '',
     lessonDate: '',
     youtubeUrl: '',
-    thumbnailUrl: '',
+    thumbnailUrl: '', 
     lessonDuration: ''
   });
 

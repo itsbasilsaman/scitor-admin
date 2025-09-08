@@ -17,8 +17,6 @@ export const axiosIn = axios.create({
     "admin/login",
     async (adminCredentials:IAdminLogin,{rejectWithValue})=>{
         try {
-           
-          
           console.log("befor go to the logtin ",adminCredentials, "admin login response data");
             const {data} = await axiosIn.post(`/admin/login`, adminCredentials,config);
             console.log(data, "admin login response data");
