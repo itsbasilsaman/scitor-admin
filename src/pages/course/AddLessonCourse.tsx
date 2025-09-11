@@ -300,7 +300,7 @@ useEffect(() => {
                 YouTube URL *
               </label>
               <input
-                type="url"
+                type="text"
                 id="youtubeUrl"
                 name="youtubeUrl"
                 value={formData.youtubeUrl}
