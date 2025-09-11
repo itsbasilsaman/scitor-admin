@@ -85,14 +85,14 @@ useEffect(() => {
   const validateForm = (): boolean => {
     const newErrors: Partial<LessonFormData> = {};
 
-    if (!formData.courseId) newErrors.courseId = 'Course selection is required';
-    if (!formData.lessonTitle.trim()) newErrors.lessonTitle = 'Lesson title is required';
-    if (!formData.lessonTitleAr.trim()) newErrors.lessonTitleAr = 'Arabic lesson title is required';
-    if (!formData.lessonNumber.trim()) newErrors.lessonNumber = 'Lesson number is required';
-    if (!formData.lessonDate) newErrors.lessonDate = 'Lesson date is required';
-    if (!formData.youtubeUrl.trim()) newErrors.youtubeUrl = 'YouTube URL is required';
-    if (!formData.lessonDuration.trim()) newErrors.lessonDuration = 'Lesson duration is required';
-    if (!formData.thumbnailUrl.trim()) newErrors.thumbnailUrl = 'Thumbnail URL is required';
+  if (!formData.courseId) newErrors.courseId = 'Course selection is required';
+  if (!formData.lessonTitle.trim()) newErrors.lessonTitle = 'Lesson title is required';
+  if (!formData.lessonTitleAr.trim()) newErrors.lessonTitleAr = 'Arabic lesson title is required';
+  if (!formData.lessonNumber.trim()) newErrors.lessonNumber = 'Lesson number is required';
+  if (!formData.lessonDate) newErrors.lessonDate = 'Lesson date is required';
+  // YouTube URL is not required
+  if (!formData.lessonDuration.trim()) newErrors.lessonDuration = 'Lesson duration is required';
+  if (!formData.thumbnailUrl.trim()) newErrors.thumbnailUrl = 'Thumbnail URL is required';
 
     // Validate lesson number is positive
     if (formData.lessonNumber && (isNaN(Number(formData.lessonNumber)) || Number(formData.lessonNumber) <= 0)) {
