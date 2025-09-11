@@ -55,13 +55,24 @@ useEffect(() => {
   fetchCourses();
 }, [dispatch]);
 
+  // Helper to extract YouTube video ID from any valid YouTube URL
+  const extractYouTubeVideoId = (url: string): string => {
+    // Regex covers youtu.be, youtube.com/watch, youtube.com/embed, with or without extra params
+    const regex = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : url;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    let newValue = value;
+    if (name === 'youtubeUrl') {
+      newValue = extractYouTubeVideoId(value.trim());
+    }
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: newValue
     }));
-    
     // Clear error when user starts typing
     if (errors[name as keyof LessonFormData]) {
       setErrors(prev => ({
