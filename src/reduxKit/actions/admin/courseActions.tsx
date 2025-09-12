@@ -10,14 +10,7 @@ export const axiosIn = axios.create({
   });
 
 
-  type CourseData = {
-  courseName: string;
-  courseNameAr: string;
-  description: string;
-  descriptionAr: string;
-  imageUrl: string;
-  status: string;
-};
+
 
 
 
@@ -70,7 +63,7 @@ export const axiosIn = axios.create({
       }
     )
     export const adminCourseChangeStatus= createAsyncThunk(
-      "admin/adminCourseChangeStatus",
+      "admin/adminCourseChangeStatus", 
       async (id:string,{rejectWithValue})=>{
           try {
               const response = await axiosIn.patch(`/admin/status/${id}`,config);
@@ -86,10 +79,10 @@ export const axiosIn = axios.create({
     )
     export const adminUpdateCourse= createAsyncThunk(
       "admin/adminUpdateCourse",
-      async ( { id, data }:{ id: any; data: CourseData },{rejectWithValue})=>{
+      async ( { id, data }:{ id: any; data: FormData  },{rejectWithValue})=>{
           try {
               const response = await axiosIn.put(`/admin/updateCourse/${id}`, data,config);
-              return response.data;
+              return response.data; 
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
               if (error.response) {
@@ -100,22 +93,6 @@ export const axiosIn = axios.create({
       }
     )
   
-      export const deleteLessonAction= createAsyncThunk(
-        "admin/deleteUserAction",
-        async (id:string,{rejectWithValue})=>{
-            try {
-                console.log("before delete the CourseAction ",id);
-                const response = await axiosIn.delete(`/admin/deleteLesson/${id}`,config);
-                return response.data;
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              } catch (error: any) {
-                if (error.response) {
-                  return rejectWithValue(error.response.data);
-                }
-                return rejectWithValue({ message: "Something went wrong!" });
-              }
-        }
-      )
-    
+  
     
     

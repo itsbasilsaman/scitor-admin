@@ -3,7 +3,7 @@ import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../reduxKit/store";
-import { adminAddCourseAction } from "../../reduxKit/actions/admin/courseActions";
+import { adminUpdateCourse } from "../../reduxKit/actions/admin/courseActions";
 import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 import { commonRequest } from "../../config/api";
@@ -33,10 +33,11 @@ export default function UpdateCourse() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const location = useLocation();
-  const { loading, error } = useSelector((state: RootState) => state.course || {});
-   const { id } = location.state || {};
+  const { id } = location.state || {};
+  const { error } = useSelector((state: RootState) => state.course || {});
   const [course, setCourse] = useState<CourseData>(initialCourse);
   const [errors, setErrors] = useState<Partial<CourseData>>({});
+  const [loading,setLoading]=useState(false)
 
 
 
@@ -58,7 +59,7 @@ useEffect(() => {
           config,
           {}
         );
-        console.log('yes this : ',response.data.data);
+    
         if(response.data.success){
             setCourse(response.data.data)
         }
@@ -160,16 +161,22 @@ useEffect(() => {
       formData.append("descriptionAr", course.descriptionAr);
       formData.append("imageUrl", course.imageUrl);
       formData.append("status", course.status);
+      setLoading(true)
 
-      const result = await dispatch(adminAddCourseAction(formData)).unwrap();
+      const result = await dispatch(adminUpdateCourse({id:id,data:formData})).unwrap();
+      if(result.success){
+        toast.success(result.message)
+        setLoading(false)
 
-      console.log("my course adding result is : ",result);
+      }
+
+      console.log("my course Update result is : ",result);
       
       
       // Reset form
       if(result.success){
         
-        toast.success("Course created successfully!");
+        toast.success("Course Updated successfully!");
         setCourse(initialCourse); 
         setErrors({});
       }
@@ -181,7 +188,7 @@ useEffect(() => {
       } else if (typeof error === 'string') {
         toast.error(error);
       } else {
-        toast.error("Failed to create course. Please try again.");
+        toast.error("Failed to Update course. Please try again.");
       }
     }
   };
@@ -382,10 +389,10 @@ useEffect(() => {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Creating Course...
+                Updating Course...
               </div>
             ) : (
-              "Create Course"
+              "Update Course"
             )}
           </button> 
         </div>

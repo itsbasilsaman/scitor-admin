@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios  from "axios";
 import { URL,config } from "../../../config/constants";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -35,6 +36,22 @@ export const axiosIn = axios.create({
               const response = await axiosIn.get(`/admin/getLessons`,config);
               return response.data;
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } catch (error: any) {
+              if (error.response) {
+                return rejectWithValue(error.response.data);
+              }
+              return rejectWithValue({ message: "Something went wrong!" });
+            }
+      }
+    )
+
+    export const adminUpdateLessons= createAsyncThunk(
+      "admin/updateLesson",
+     async ( { id, data }:{ id: any; data: FormData  },{rejectWithValue})=>{
+          try {
+              const response = await axiosIn.put(`/admin/updateLesson/${id}`, data,config);
+              return response.data;
+             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
               if (error.response) {
                 return rejectWithValue(error.response.data);

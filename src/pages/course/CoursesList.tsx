@@ -5,7 +5,8 @@ import { AppDispatch, RootState } from "../../reduxKit/store";
 import { useEffect, useState } from "react";
 import {  useNavigate } from "react-router-dom";
 
-import { adminGetCourses, deleteLessonAction, adminGetCourseById,adminCourseChangeStatus } from "../../reduxKit/actions/admin/courseActions";
+import { adminGetCourses, adminGetCourseById,adminCourseChangeStatus } from "../../reduxKit/actions/admin/courseActions";
+import { deleteLessonAction } from "../../reduxKit/actions/admin/adminLessonAction";
 
 export default function CoursesList() {
 
@@ -100,7 +101,19 @@ export default function CoursesList() {
     } catch (error:any) {
       
     console.error("Error changing the course status:", error);
-      alert("Error fetching course details. Please try again.");
+      alert("Error Update course Please try again.");
+      setShowModal(false);
+    } finally {
+      setModalLoading(false);
+    }
+  };
+  const handleUpdateLesson = async (id: string) => {
+    try {
+       navigate("/updateLesson", { state: { id } });
+    } catch (error:any) {
+      
+    console.error("Error changing the course status:", error);
+      alert("Error Update course Please try again.");
       setShowModal(false);
     } finally {
       setModalLoading(false);
@@ -453,6 +466,14 @@ export default function CoursesList() {
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
                                     Delete Lesson
+                                  </button>
+                                  
+                                  <button
+                                    onClick={() => handleUpdateLesson(lesson._id)}
+                                    className="inline-flex items-center  px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm font-medium"
+                                  >
+                                    
+                                    Update Lesson
                                   </button>
                                 </div>
                               </div>
