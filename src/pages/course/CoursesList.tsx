@@ -3,16 +3,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../reduxKit/store";
 import { useEffect, useState } from "react";
+import {  useNavigate } from "react-router-dom";
 
-import { adminGetCourses, deleteLessonAction, adminGetCourseById } from "../../reduxKit/actions/admin/courseActions";
+import { adminGetCourses, deleteLessonAction, adminGetCourseById,adminCourseChangeStatus } from "../../reduxKit/actions/admin/courseActions";
 
 export default function CoursesList() {
+
+  const navigate=useNavigate()
+
   const dispatch = useDispatch<AppDispatch>();
   const { loading } = useSelector((state: RootState) => state.course);
   const [courses, setCourses] = useState<any[]>();
   const [detailedCourses, setDetailedCourses] = useState<any>(null);
   const [showModal, setShowModal] = useState(false);
   const [modalLoading, setModalLoading] = useState(false);
+  const [statusLoading, setstatusLoading] = useState(false);
+
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -69,6 +75,41 @@ export default function CoursesList() {
     }
   };
 
+  const handleChangeStatusCourse = async (id: string) => {
+    try {
+      setstatusLoading(true)
+      const courseDetails = await dispatch(adminCourseChangeStatus(id)).unwrap();
+      if (courseDetails.success) {
+        setDetailedCourses(courseDetails.data);
+      setstatusLoading(false)
+      const result = await dispatch(adminGetCourses()).unwrap();
+        console.log("the course search results :", result.data);
+        setCourses(result.data);
+      }
+    } catch (error) {
+      console.error("Error changing the course status:", error);
+      alert("Error changing course details. Please try again.");
+      setShowModal(false);
+    } finally {
+      setModalLoading(false);
+    }
+  };
+  const handleUpdateCourse = async (id: string) => {
+    try {
+       navigate("/updateCourse", { state: { id } });
+    } catch (error:any) {
+      
+    console.error("Error changing the course status:", error);
+      alert("Error fetching course details. Please try again.");
+      setShowModal(false);
+    } finally {
+      setModalLoading(false);
+    }
+  };
+
+
+
+
   const closeModal = () => {
     setShowModal(false);
     setDetailedCourses(null);
@@ -115,11 +156,49 @@ export default function CoursesList() {
                         {course.courseName}
                       </h3>
                       <div className="flex gap-2">
+
+
+                       <button
+     onClick={() => handleChangeStatusCourse(course._id)}
+      disabled={statusLoading}
+      className={`flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors 
+        ${statusLoading ? "bg-gray-400 cursor-not-allowed" : "bg-red-400 hover:bg-red-700 text-white"}`}
+    >
+      {statusLoading && (
+        <svg
+          className="animate-spin h-4 w-4 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v4l3.5-3.5L12 0v4a8 8 0 100 16v-4l-3.5 3.5L12 24v-4a8 8 0 01-8-8z"
+          ></path>
+        </svg>
+      )}
+      {statusLoading ? "Changing..." : "Change Status"}
+    </button>
                         <button
                           onClick={() => handleViewCourse(course._id)}
                           className="bg-green-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
                         >
                           View Details
+                        </button>
+                        <button
+                          onClick={() => handleUpdateCourse(course._id)}
+                          className="bg-gray-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
+                        >
+                          UpdateCourse
                         </button>
                       </div>
                     </div>
@@ -401,7 +480,7 @@ export default function CoursesList() {
               )}
             </div>
 
-            {/* Modal Footer - Fixed */}
+            {/* Modal Footer - Fixed */}  
             <div className="bg-gray-50 border-t border-gray-200 px-4 sm:px-6 py-3 sm:py-4 flex justify-end">
               <button
                 onClick={closeModal}

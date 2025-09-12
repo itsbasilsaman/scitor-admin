@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../reduxKit/store";
 import { adminAddCourseAction } from "../../reduxKit/actions/admin/courseActions";
 import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom";
+import { commonRequest } from "../../config/api";
+import { config } from "../../config/constants";
 
 
 type CourseData = {
@@ -22,16 +25,58 @@ const initialCourse: CourseData = {
   description: "",
   descriptionAr: "",
   imageUrl: "",
-  status: "active",
+  status: "active", 
 };
 
-export default function AddCourse() {
+
+export default function UpdateCourse() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const location = useLocation();
   const { loading, error } = useSelector((state: RootState) => state.course || {});
-  
+   const { id } = location.state || {};
   const [course, setCourse] = useState<CourseData>(initialCourse);
   const [errors, setErrors] = useState<Partial<CourseData>>({});
+
+
+
+
+
+useEffect(() => {
+    // Fetch document details by ID and Language
+  
+
+    if (id ) fetchDocument(); // Ensure both `id` and `language` are present
+  }, [id]);
+
+
+   const fetchDocument = async () => {
+      try {
+        const response = await commonRequest(
+          "GET",
+          `/admin/getCourseById/${id}`,
+          config,
+          {}
+        );
+        console.log('yes this : ',response.data.data);
+        if(response.data.success){
+            setCourse(response.data.data)
+        }
+      } catch (error) {
+        console.error("Error fetching document details:", error);
+      }
+    };
+
+
+
+
+
+
+
+
+
+
+
 
   // Handle input changes
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

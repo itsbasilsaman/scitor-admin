@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios  from "axios";
 import { URL,config } from "../../../config/constants";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -8,6 +9,15 @@ export const axiosIn = axios.create({
     baseURL: URL,
   });
 
+
+  type CourseData = {
+  courseName: string;
+  courseNameAr: string;
+  description: string;
+  descriptionAr: string;
+  imageUrl: string;
+  status: string;
+};
 
 
 
@@ -49,6 +59,36 @@ export const axiosIn = axios.create({
       async (id:string,{rejectWithValue})=>{
           try {
               const response = await axiosIn.get(`/admin/getCourseById/${id}`,config);
+              return response.data;
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } catch (error: any) {
+              if (error.response) {
+                return rejectWithValue(error.response.data);
+              }
+              return rejectWithValue({ message: "Something went wrong!" });
+            }
+      }
+    )
+    export const adminCourseChangeStatus= createAsyncThunk(
+      "admin/adminCourseChangeStatus",
+      async (id:string,{rejectWithValue})=>{
+          try {
+              const response = await axiosIn.patch(`/admin/status/${id}`,config);
+              return response.data;
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } catch (error: any) {
+              if (error.response) {
+                return rejectWithValue(error.response.data);
+              }
+              return rejectWithValue({ message: "Something went wrong!" });
+            }
+      }
+    )
+    export const adminUpdateCourse= createAsyncThunk(
+      "admin/adminUpdateCourse",
+      async ( { id, data }:{ id: any; data: CourseData },{rejectWithValue})=>{
+          try {
+              const response = await axiosIn.put(`/admin/updateCourse/${id}`, data,config);
               return response.data;
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
