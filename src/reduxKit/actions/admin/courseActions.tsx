@@ -10,10 +10,6 @@ export const axiosIn = axios.create({
   });
 
 
-
-
-
-
   export const adminAddCourseAction= createAsyncThunk(
     "admin/Course",
     async (Datas:FormData,{rejectWithValue})=>{
@@ -36,7 +32,7 @@ export const axiosIn = axios.create({
       "admin/adminGetCourse",
       async (_,{rejectWithValue})=>{
           try {
-              const response = await axiosIn.get(`/admin/getCourse`,config);
+              const response = await axiosIn.get(`/admin/getCourseAdmin`,config);
               return response.data;
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
@@ -51,7 +47,7 @@ export const axiosIn = axios.create({
       "admin/getCourseById",
       async (id:string,{rejectWithValue})=>{
           try {
-              const response = await axiosIn.get(`/admin/getCourseById/${id}`,config);
+              const response = await axiosIn.get(`/admin/getCourseByIdAdmin/${id}`,config);
               return response.data;
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
